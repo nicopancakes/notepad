@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Mode Notepad</title>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #121212;
+        color: #f0f0f0;
+        font-family: monospace;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #notepad {
+        width: 100%;
+        height: 100%;
+        background-color: #121212;
+        color: #f0f0f0;
+        border: none;
+        padding: 20px;
+        box-sizing: border-box;
+        font-size: 16px;
+        resize: none;
+        outline: none;
+    }
+</style>
+</head>
+<body>
+<textarea id="notepad" placeholder="Start typing..."></textarea>
+
+<script>
+    const notepad = document.getElementById('notepad');
+    let fontSize = 16; // starting font size in px
+
+    notepad.addEventListener('wheel', function(event) {
+        if (event.ctrlKey) { // Optional: use ctrl + scroll for zooming
+            event.preventDefault(); // prevent page scroll
+            if (event.deltaY < 0) {
+                fontSize += 1;
+            } else {
+                fontSize = Math.max(8, fontSize - 20); // minimum font size 8px
+            }
+            notepad.style.fontSize = fontSize + 'px';
+        }
+    });
+</script>
+</body>
+</html>
